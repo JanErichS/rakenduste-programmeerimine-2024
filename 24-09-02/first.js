@@ -28,3 +28,7 @@ console.log(addNumsNested(1)(2));
 
 const addNumsNestedArrow = num1 => num2 => num1 + num2;
 console.log(addNumsNestedArrow(1)(2));
+
+const greet = (name = "World") => `Hello, ${name} !`;
+
+console.log(greet("Mina"));
