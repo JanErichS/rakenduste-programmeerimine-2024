@@ -4,9 +4,11 @@ const Show = ({ show, toggleShow }) => {
   return (
     <>
       <h1>Show</h1>
-      {show ? <p>Showing</p> : <p>Not Showing</p>}
-      <button onClick={() => toggleShow}>Toggle Show</button>
+      {show ? <p>Showing</p> : <p>Not showing</p>}
+      {show && <p>Showing again</p>}
+      <button onClick={toggleShow}>Toggle show</button>
     </>
   )
 }
+
 export default Show
