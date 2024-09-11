@@ -11,7 +11,9 @@ const Counter = () => {
       <h1>{count}</h1>
       {[+1, +5, +50, -1, -5, -50].map(element => {
         return (
-          <button onClick={() => modifyCounter()}>Click Me! {element}</button>
+          <button onClick={() => modifyCounter(element)}>
+            Click Me! {element}
+          </button>
         )
       })}
       <button onClick={() => modifyCounter()}>Click Me!</button>
