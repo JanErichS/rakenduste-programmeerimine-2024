@@ -1,6 +1,6 @@
 import React from "react"
 
-const Me = ({ name = "PeaBoss" }) => {
+const Me = ({ name = "Anon" }) => {
   const hobbies = ["Cooking", "Weightlifting", "Walking", "Building furniture"]
 
   return (

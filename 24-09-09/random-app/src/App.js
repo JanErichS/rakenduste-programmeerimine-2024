@@ -1,4 +1,5 @@
 import "./App.css"
+import "./styles/me-style.css"
 import Name from "./components/Name"
 import Counter from "./components/Counter"
 import Show from "./components/Show"
