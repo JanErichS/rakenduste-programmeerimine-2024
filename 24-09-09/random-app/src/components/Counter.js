@@ -16,10 +16,10 @@ const Counter = () => {
           </button>
         )
       })}
-      <button onClick={() => modifyCounter()}>Click Me!</button>
+      {/* <button onClick={() => modifyCounter()}>Click Me!</button>
       <button onClick={() => setTimeout(() => modifyCounter(), 1000)}>
         Click Me Async!
-      </button>
+      </button> */}
     </>
   )
 }

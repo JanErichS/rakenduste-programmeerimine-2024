@@ -5,6 +5,7 @@ import Show from "./components/Show"
 import Context from "./components/Context"
 import PropDrilling from "./components/PropDrilling"
 import { useState } from "react"
+import CounterBtn from "./components/CounterBtn"
 
 function App() {
   const [show, setShow] = useState(true)
@@ -21,6 +22,9 @@ function App() {
         toggleShow={toggleShow}
       />
       <PropDrilling />
+      Each of The buttons gets its own state. <br/>
+      <CounterBtn />
+      <CounterBtn />
     </>
   )
 }
