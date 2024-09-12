@@ -12,7 +12,7 @@ const Counter = () => {
       {[+1, +5, +50, -1, -5, -50].map(element => {
         return (
           <button onClick={() => modifyCounter(element)}>
-            Click Me! {element}
+            Click Me! {element > 0 ? "+" : ""} {element}
           </button>
         )
       })}
