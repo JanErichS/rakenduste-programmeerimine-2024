@@ -1,10 +1,13 @@
 import "./App.css"
+import "./styles/me-style.css"
 import Name from "./components/Name"
 import Counter from "./components/Counter"
 import Show from "./components/Show"
 import Context from "./components/Context"
 import PropDrilling from "./components/PropDrilling"
 import { useState } from "react"
+import CounterBtn from "./components/CounterBtn"
+import Me from "./components/Me"
 
 function App() {
   const [show, setShow] = useState(true)
@@ -14,6 +17,7 @@ function App() {
     <>
       <Name name={"PeabOss"} />
       <Name />
+      <Me name="Jan-Erich" />
       <Counter />
       <Context />
       <Show
@@ -21,6 +25,9 @@ function App() {
         toggleShow={toggleShow}
       />
       <PropDrilling />
+      Each of The buttons gets its own state. <br />
+      <CounterBtn />
+      <CounterBtn />
     </>
   )
 }
