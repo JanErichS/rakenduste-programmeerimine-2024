@@ -1,8 +1,14 @@
+import { Outlet } from "react-router";
 import "./App.css";
-import Cats from "./components/Cats";
+import NavBar from "./components/NavBar";
 
 function App() {
-  return <Cats />;
+  return (
+    <>
+      <NavBar />
+      <Outlet />
+    </>
+  );
 }
 
 export default App;

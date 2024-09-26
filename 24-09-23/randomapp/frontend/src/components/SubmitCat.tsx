@@ -36,7 +36,7 @@ export default function SubmitCat({ fetchCats }: SubmitCatProps) {
   };
 
   return (
-    <Box>
+    <Box display="flex" justifyContent="center" alignItems="center">
       <form onSubmit={handleSubmit}>
         <Stack>
           <TextField

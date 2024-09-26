@@ -44,20 +44,28 @@ const Cats = () => {
 
   return (
     <Box>
-      <Typography variant="h2">Cats</Typography>
-      <List>
-        {cats.map((cat) => (
-          <ListItem key={cat.id}>
-            {JSON.stringify(cat)}{" "}
-            <Button
-              variant="contained"
-              color="warning"
-              onClick={() => deleteCats(cat.id)}>
-              X
-            </Button>
-          </ListItem>
-        ))}
-      </List>
+      <Typography
+        variant="h2"
+        display="flex"
+        justifyContent="center"
+        alignItems="center">
+        Cats
+      </Typography>
+      <Box display="flex" justifyContent="center" alignItems="center">
+        <List>
+          {cats.map((cat) => (
+            <ListItem key={cat.id}>
+              {JSON.stringify(cat)}{" "}
+              <Button
+                variant="contained"
+                color="warning"
+                onClick={() => deleteCats(cat.id)}>
+                X
+              </Button>
+            </ListItem>
+          ))}
+        </List>
+      </Box>
       <SubmitCat fetchCats={fetchCats} />
       <ChangeCats fetchCats={fetchCats} cats={cats} />
     </Box>

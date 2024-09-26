@@ -70,46 +70,54 @@ const ChangeCats = ({ fetchCats, cats }: ChangeCatProps) => {
 
   return (
     // Choosing the cat to change.
-    <Box>
-      <Typography variant="h2">Cats</Typography>
-
-      {cats &&
-        cats.map((cat) => (
-          <FormControl key={cat.id} component="fieldset">
-            <RadioGroup
-              aria-label="cat-choose"
-              name={`change-cat-${cat.id}`}
-              value={value}
-              onChange={handleChange}>
-              <FormControlLabel
-                value={cat.id}
-                control={<Radio />}
-                label={cat.name}
-              />
-            </RadioGroup>
-          </FormControl>
-        ))}
-
+    <>
+      <Typography
+        variant="h2"
+        display="flex"
+        justifyContent="center"
+        alignItems="center">
+        Cats
+      </Typography>
+      <Box display="flex" justifyContent="center" alignItems="center">
+        {cats &&
+          cats.map((cat) => (
+            <FormControl key={cat.id} component="fieldset">
+              <RadioGroup
+                aria-label="cat-choose"
+                name={`change-cat-${cat.id}`}
+                value={value}
+                onChange={handleChange}>
+                <FormControlLabel
+                  value={cat.id}
+                  control={<Radio />}
+                  label={cat.name}
+                />
+              </RadioGroup>
+            </FormControl>
+          ))}
+      </Box>
       <form onSubmit={handleSubmit}>
-        <Stack>
-          <TextField
-            label="New Kitty Name"
-            onChange={(event) => setName(event.target.value)}
-          />
-          {/* Wheter the cat will be deleted or not. */}
-          <FormGroup>
-            <FormControlLabel
-              control={<Checkbox />}
-              label="Deleted"
-              onChange={(event) =>
-                setDeleted((event.target as HTMLInputElement).checked)
-              }
+        <Box display="flex" justifyContent="center" alignItems="center">
+          <Stack>
+            <TextField
+              label="New Kitty Name"
+              onChange={(event) => setName(event.target.value)}
             />
-          </FormGroup>
-          <Button type="submit">Change</Button>
-        </Stack>
+            {/* Wheter the cat will be deleted or not. */}
+            <FormGroup>
+              <FormControlLabel
+                control={<Checkbox />}
+                label="Deleted"
+                onChange={(event) =>
+                  setDeleted((event.target as HTMLInputElement).checked)
+                }
+              />
+            </FormGroup>
+            <Button type="submit">Change</Button>
+          </Stack>
+        </Box>
       </form>
-    </Box>
+    </>
   );
 };
 
