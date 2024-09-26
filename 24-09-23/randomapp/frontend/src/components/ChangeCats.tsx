@@ -72,11 +72,11 @@ const ChangeCats = ({ fetchCats, cats }: ChangeCatProps) => {
     // Choosing the cat to change.
     <>
       <Typography
-        variant="h2"
+        variant="h3"
         display="flex"
         justifyContent="center"
         alignItems="center">
-        Cats
+        Update a Cat
       </Typography>
       <Box display="flex" justifyContent="center" alignItems="center">
         {cats &&
