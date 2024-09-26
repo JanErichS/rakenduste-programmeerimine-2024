@@ -5,29 +5,35 @@ const cats = [
     name: "Kiisumiisu",
     createdAt: 1727099012754,
     updatedAt: null,
-    deletedAt: null
+    deleted: false
   },
   {
     id: "299dcb4e-5a7f-4f17-927c-e5f161d554a7",
     name: "Miisukiisu",
     createdAt: 1727099315253,
     updatedAt: null,
-    deletedAt: null
+    deleted: false
   }
 ];
 
 export function create(req, res) {
   const { name } = req.body;
 
+    if (!name || name === "") {
+			return res
+				.status(418)
+				.send({ type: "Error", message: "Must include a name (not coffee)" });
+		}
+
   const newCat = {
     id: crypto.randomUUID(),
     name: name,
     createdAt: new Date().getTime(),
     updatedAt: null,
-    deletedAt: null
+    deleted: false
   };
 
-  console.log(name);
+  // console.log(name);
 
   cats.push(newCat);
   res.send(newCat);
@@ -55,7 +61,7 @@ const _delete = (req, res) => {
   cats
     .filter((cat) => cat.id === id)
     .forEach((cat) => {
-      cat.deletedAt = new Date().getTime();
+      cat.deleted = true;
     });
 
   res.send(cats);

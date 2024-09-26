@@ -1,17 +1,51 @@
-import { useState } from "react";
+import { FormEventHandler, useState } from "react";
+import { Box, Button, Stack, TextField } from "@mui/material";
 
-export default function SubmitCat() {
+type SubmitCatProps = {
+  fetchCats: () => void;
+};
+
+export default function SubmitCat({ fetchCats }: SubmitCatProps) {
   const [name, setName] = useState("");
 
   const submitCat = async () => {
-    const response = await fetch("http://localhost:3030", {
-      method: "POST",
-      body: JSON.stringify(name)
-    });
+    try {
+      const response = await fetch("http://localhost:3033/cats", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name: name }),
+      });
+
+      if (response.ok) {
+        console.log("Success", response);
+      } else {
+        console.warn("No success");
+      }
+    } catch (error) {
+      console.warn(error);
+    }
   };
 
-  const handleSubmit() => {
-
-  }
-  return <form action="submit"></form>;
+ const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
+		event.preventDefault();
+		submitCat();
+		setTimeout(fetchCats, 100);
+ };
+ 
+  return (
+    <Box>
+      <form onSubmit={handleSubmit}>
+        <Stack>
+          <TextField
+            label="Kitty's name"
+            onChange={(event) => setName(event.target.value)}
+          />
+          <Button type="submit">Add</Button>
+        </Stack>
+      </form>
+    </Box>
+  );
 }

@@ -1,34 +1,39 @@
 import { useEffect, useState } from "react";
 
+import { Box, List, ListItem, Typography } from "@mui/material";
+import SubmitCat from "./SubmitCat";
+
 export default function Cats() {
+
+	type Cat = {
+		id: string;
+		name: string;
+		createdAt: number;
+		updatedAt: number | null;
+		delted: boolean;
+	};
+
   const [cats, setCats] = useState<Cat[]>([]);
 
-  type Cat = {
-    id: string;
-    name: string;
-    createdAt: number;
-    updatedAt: number;
-    deletedAt: number;
-  };
+	const fetchCats = async () => {
+		const res = await fetch("http//:localhost:3033/cats");
+		const data = await res.json();
+		setCats(data);
+	};
 
-  useEffect(() => {
-    const fetchCats = async () => {
-      const res = await fetch("http//:localhost:3033/cats");
-      const data = await res.json();
-      setCats(data);
-    };
+	useEffect(() => {
+		fetchCats();
+	}, []);
 
-    fetchCats();
-  }, []);
-
-  return (
-    <>
-      <h1>Cats</h1>
-      <ul>
-        {cats.map((cat) => (
-          <li>{JSON.stringify(cat)}</li>
-        ))}
-      </ul>
-    </>
-  );
+	return (
+		<Box>
+			<Typography variant="h2">All cats</Typography>
+			<List>
+				{cats.map((cat) => (
+					<ListItem key={cat.id}>{JSON.stringify(cat)}</ListItem>
+				))}
+			</List>
+			<SubmitCat fetchCats={fetchCats} />
+		</Box>
+	);
 }

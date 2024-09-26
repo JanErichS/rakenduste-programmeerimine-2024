@@ -2,8 +2,8 @@ import { Router } from "express";
 const router = Router();
 import cats from "../controllers/cats.controller.js";
 import {
-  catsRouteMiddleware,
-  catsGetRouteMiddleware
+	catsRouteMiddleware,
+	catsGetRouteMiddleware,
 } from "../middleware/cats.middleware.js";
 
 router.use(catsRouteMiddleware);
