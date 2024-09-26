@@ -1,4 +1,4 @@
-import { FormEventHandler, useState } from "react";
+import { useState } from "react";
 import { Box, Button, Stack, TextField } from "@mui/material";
 
 type SubmitCatProps = {
@@ -29,12 +29,12 @@ export default function SubmitCat({ fetchCats }: SubmitCatProps) {
     }
   };
 
- const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
-		event.preventDefault();
-		submitCat();
-		setTimeout(fetchCats, 100);
- };
- 
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
+    submitCat();
+    setTimeout(fetchCats, 100);
+  };
+
   return (
     <Box>
       <form onSubmit={handleSubmit}>
