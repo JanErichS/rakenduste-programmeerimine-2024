@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-
-import { Box, List, ListItem, Typography } from "@mui/material";
+import { Box, List, ListItem, Typography, Button } from "@mui/material";
 import SubmitCat from "./SubmitCat";
 
 type Cat = {
@@ -21,6 +20,21 @@ const Cats = () => {
     setCats(data);
   };
 
+  const showCompletion = () => {};
+  const deleteCats = async (id: string) => {
+    const response = await fetch("http://localhost:3033/cats", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: id }),
+    });
+    if (response.ok) {
+      fetchCats();
+      showCompletion();
+    }
+  };
+
   useEffect(() => {
     fetchCats();
   }, []);
@@ -30,7 +44,15 @@ const Cats = () => {
       <Typography variant="h2">Cats</Typography>
       <List>
         {cats.map((cat) => (
-          <ListItem key={cat.id}>{JSON.stringify(cat)}</ListItem>
+          <ListItem key={cat.id}>
+            {JSON.stringify(cat)}{" "}
+            <Button
+              variant="contained"
+              color="warning"
+              onClick={() => deleteCats(cat.id)}>
+              X
+            </Button>
+          </ListItem>
         ))}
       </List>
       <SubmitCat fetchCats={fetchCats} />
