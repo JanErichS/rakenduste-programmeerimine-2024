@@ -1,10 +1,14 @@
-import { useEffect, useState } from "react";
-import { Box, List, ListItem, Typography, Button } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import TodoTable from "./TodoTable";
+import { useState } from "react";
+import { fetchSomething } from "../utils/utils";
+import SubmitTodo from "./SubmitTodo";
 
 export type Todo = {
-  id: number;
-  title: string;
+  id: string;
+  todoTitle: string;
   priority: number;
+  content: string;
   createdAt: Date;
   updatedAt: Date | null;
   deleted: boolean;
@@ -14,49 +18,30 @@ const URL = "http://localhost:3033/todos";
 
 const Todos = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
-
   const fetchTodos = async () => {
-    const response = await fetch(URL);
-    const data = await response.json();
-
+    const data = await fetchSomething(URL);
     setTodos(data);
   };
-
-  const showCompletion = () => {};
-  const deleteTodos = async (id: number) => {
-    const response = await fetch(URL, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "applitodoion/json",
-      },
-      body: JSON.stringify({ id: id }),
-    });
-    if (response.ok) {
-      fetchTodos();
-      showCompletion();
-    }
-  };
-
-  useEffect(() => {
-    fetchTodos();
-  }, []);
-
   return (
-    <Box display="flex" justifyContent="center" alignItems="center">
-      <Typography variant="h2">Todos</Typography>
-      <List>
-        {todos.map((todo) => (
-          <ListItem key={todo.id}>
-            {JSON.stringify(todo)}{" "}
-            <Button
-              variant="contained"
-              color="warning"
-              onClick={() => deleteTodos(todo.id)}>
-              X
-            </Button>
-          </ListItem>
-        ))}
-      </List>
+    <Box>
+      <Typography
+        variant="h2"
+        display="flex"
+        justifyContent="center"
+        alignItems="center">
+        Todos
+      </Typography>
+      <Box display="flex" justifyContent="center" alignItems="center">
+        <TodoTable fetchTodos={fetchTodos} URL={URL} todos={todos} />
+      </Box>
+      <Typography
+        variant="h3"
+        display="flex"
+        justifyContent="center"
+        alignItems="center">
+        Add a todo
+      </Typography>
+      <SubmitTodo fetchTodos={fetchTodos} URL={URL} todos={todos} />
     </Box>
   );
 };

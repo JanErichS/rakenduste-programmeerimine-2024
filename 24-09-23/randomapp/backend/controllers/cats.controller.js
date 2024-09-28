@@ -1,4 +1,5 @@
 import crypto from "crypto";
+import { filterDeleted } from "../utils/utils.js";
 const cats = [
   {
     id: "fb6debd8-a684-4945-97ee-ef104e7b421b",
@@ -40,7 +41,7 @@ export function create(req, res) {
 }
 
 export function read(req, res) {
-  return res.send(cats);
+  return res.send(filterDeleted(cats));
 }
 
 export function update(req, res) {

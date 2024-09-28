@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import SubmitCat from "./SubmitCat";
 import ChangeCats from "./ChangeCats";
+import { fetchSomething, formatDate } from "../utils/utils";
 
 export type Cat = {
   id: string;
@@ -28,13 +29,10 @@ const Cats = () => {
   const [cats, setCats] = useState<Cat[]>([]);
 
   const fetchCats = async () => {
-    const response = await fetch(URL);
-    const data = await response.json();
-
+    const data = await fetchSomething(URL);
     setCats(data);
   };
 
-  const showCompletion = () => {};
   const deleteCats = async (id: string) => {
     const response = await fetch(URL, {
       method: "DELETE",
@@ -45,28 +43,12 @@ const Cats = () => {
     });
     if (response.ok) {
       fetchCats();
-      showCompletion();
     }
   };
 
   useEffect(() => {
     fetchCats();
   }, []);
-
-  function formatDate(timestamp: number | null) {
-    if (!timestamp) {
-      return;
-    }
-    const date = new Date(timestamp);
-    return date.toLocaleString("en-EU", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false,
-    });
-  }
 
   return (
     <Box>
@@ -125,18 +107,6 @@ const Cats = () => {
             </TableBody>
           </Table>
         </TableContainer>
-        {/* <List>
-          {cats.map((cat) => (
-            <ListItem key={cat.id}>
-              <Button
-                variant="contained"
-                color="warning"
-                onClick={() => deleteCats(cat.id)}>
-                X
-              </Button>
-            </ListItem>
-          ))}
-        </List> */}
       </Box>
       <Typography
         variant="h3"
