@@ -29,10 +29,12 @@ export default function SubmitCat({ fetchCats }: SubmitCatProps) {
     }
   };
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (
+    event,
+  ) => {
     event.preventDefault();
-    submitCat();
-    setTimeout(fetchCats, 100);
+    await submitCat();
+    fetchCats();
   };
 
   return (

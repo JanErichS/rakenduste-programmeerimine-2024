@@ -1,7 +1,7 @@
 import { Outlet } from "react-router";
 import "./App.css";
 import NavBar from "./components/NavBar";
-import { purple, red } from "@mui/material/colors";
+import { red } from "@mui/material/colors";
 import { ThemeProvider, createTheme } from "@mui/material";
 
 const theme = createTheme({
