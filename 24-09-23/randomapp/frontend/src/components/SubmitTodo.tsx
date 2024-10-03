@@ -47,16 +47,22 @@ export default function SubmitTodos({ fetchTodos, URL }: SubmitTodoProps) {
         <Stack>
           <TextField
             label="Todo Title"
+            name="todoTitle"
+            id="todoTitle"
             value={todoTitle}
             onChange={(event) => setTodoTitle(event.target.value)}
           />
           <TextField
             label="Todo Content"
+            name="todoContent"
+            id="todoContent"
             value={content}
             onChange={(event) => setContent(event.target.value)}
           />
           <TextField
             label="Todo priority"
+            name="todoPriority"
+            id="todoPriority"
             type="number"
             value={priority}
             onChange={(event) => setPriority(parseInt(event.target.value, 10))}
